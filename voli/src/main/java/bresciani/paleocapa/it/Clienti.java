@@ -8,14 +8,13 @@ public class Clienti {
     public void aggiungiCliente(Cliente cliente) {
         clienti.add(cliente);
     }
-    public void rimuoviCliente(Cliente cliente) {
-        clienti.remove(cliente);
-    }
-    public void rimuoviCliente(String nomeCliente, String cognomeCliente) {
-        for (Cliente cliente : clienti) {
-            if (cliente.getCodiceCliente().equals(nomeCliente) && cliente.getCognome().equals(cognomeCliente)) {
-                clienti.remove(cliente);
-                break;
+    public void rimuoviCliente(String codiceCliente, String nomeCliente) {
+        Iterator<Cliente> iterator = clienti.iterator();
+        while (iterator.hasNext()) {
+            Cliente cliente = iterator.next();
+            if (cliente.getCodiceCliente().equals(codiceCliente) && cliente.getNome().equals(nomeCliente)) {
+                iterator.remove(); 
+                break; 
             }
         }
     }
@@ -24,9 +23,10 @@ public class Clienti {
             System.out.println(cliente);
         }
     }
-    public void modificaCliente(String nomeCliente, String cognomeCliente, String nuovoNome, String nuovoCognome, String nuovaNazioneDiNascita, String nuovaCittaDiNascita, Date nuovaDataDiNascita) {
+
+    public void modificaCliente(String codiceCliente, String nuovoNome, String nuovoCognome, String nuovaNazioneDiNascita, String nuovaCittaDiNascita, Date nuovaDataDiNascita) {
         for (Cliente cliente : clienti) {
-            if (cliente.getCodiceCliente().equals(nomeCliente) && cliente.getCognome().equals(cognomeCliente)) {
+            if (cliente.getCodiceCliente().equals(codiceCliente)) {
                 cliente.setNome(nuovoNome);
                 cliente.setCognome(nuovoCognome);
                 cliente.setNazioneDiNascita(nuovaNazioneDiNascita);
@@ -36,7 +36,9 @@ public class Clienti {
             }
         }
     }
-    public void ricercaCliente(String nomeCliente, String cognomeCliente) {
+    
+    
+    public void ricercaClientePerNomeCognome(String nomeCliente, String cognomeCliente) {
         for (Cliente cliente : clienti) {
             if (cliente.getCodiceCliente().equals(nomeCliente) && cliente.getCognome().equals(cognomeCliente)) {
                 System.out.println(cliente);
@@ -45,40 +47,14 @@ public class Clienti {
         }
     }
 
-
-
-    public static void main(String[] args) {
-        Clienti clienti = new Clienti();
-
-        // Crea alcuni clienti di esempio
-        Cliente cliente1 = new Cliente("Mario", "Rossi", "Italia", "Roma", new Date());
-        Cliente cliente2 = new Cliente("Laura", "Bianchi", "Italia", "Milano", new Date());
-        Cliente cliente3 = new Cliente("Luigi", "Verdi", "Italia", "Torino", new Date());
-
-        // Aggiungi i clienti alla lista
-        clienti.aggiungiCliente(cliente1);
-        clienti.aggiungiCliente(cliente2);
-        clienti.aggiungiCliente(cliente3);
-
-        // Stampa tutti i clienti
-        System.out.println("Elenco clienti:");
-        clienti.stampaClienti();
-
-        // Ricerca un cliente specifico
-        System.out.println("Ricerca cliente:");
-        clienti.ricercaCliente("1234", "Mario");
-         System.out.println(" ricerca eseguita correttamente.");
-
-        // Modifica un cliente
-        System.out.println("Modifica cliente:");
-        clienti.modificaCliente("5678", "Laura", "Laura", "Verdi", "Italia", "Firenze", new Date());
-         System.out.println(" modifica eseguita correttamente.");
-
-        // Rimuovi un cliente
-        System.out.println("Rimozione cliente:");
-        clienti.rimuoviCliente("91011", "Luigi");
-        System.out.println(" rimozione eseguita correttamente.");
-
+    public void ricercaClientePerCodice(String codiceCliente){
+        for (Cliente cliente : clienti) {
+            if (cliente.getCodiceCliente().equals(codiceCliente)) {
+                System.out.println(cliente);
+                break;
+            }
+        }
     }
 
+    
 }

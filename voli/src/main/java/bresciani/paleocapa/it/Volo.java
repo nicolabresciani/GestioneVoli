@@ -100,6 +100,12 @@ public class Volo {
     public void setCostoVolo(double costoVolo) {
         this.costoVolo = costoVolo;
     }
+
+     public int getNumeroVoli() {
+        return contatoreCodiceVolo;
+    }
+    
+
     @Override
     public String toString() {
         return "Volo{" +

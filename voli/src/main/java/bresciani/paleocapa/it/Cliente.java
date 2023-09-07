@@ -9,23 +9,17 @@ public class Cliente {
     private String cittaDiNascita;
     private Date dataDiNascita;
     private String codiceCliente;
-    private static int contatoreCodiceCliente = 1;
 
     // Costruttore
-    public Cliente(String nome, String cognome, String nazioneDiNascita, String cittaDiNascita, Date dataDiNascita) {
+    public Cliente(String codiceDelCliente, String nome, String cognome, String nazioneDiNascita, String cittaDiNascita, Date dataDiNascita) {
         this.cognome = cognome;
         this.nome = nome;
         this.nazioneDiNascita = nazioneDiNascita;
         this.cittaDiNascita = cittaDiNascita;
         this.dataDiNascita = dataDiNascita;
-        this.codiceCliente = generaCodiceCliente();
+        this.codiceCliente = codiceDelCliente;
     }
 
-    public String generaCodiceCliente() {
-        String inizialiCognome = cognome.substring(0, Math.min(cognome.length(), 2)).toLowerCase();
-        String codiceNumerico = Integer.toString(contatoreCodiceCliente);
-        return inizialiCognome + codiceNumerico;
-    }
     
     public String getCognome() {
         return cognome;
@@ -77,13 +71,14 @@ public class Cliente {
     }
 
     public static void main(String[] args) {
-        String cognome = "Rossi";
+        
+        String codiceDelCliente = "123";
         String nome = "Mario";
+        String cognome = "Rossi";
         String nazioneDiNascita = "Italia";
         String cittaDiNascita = "Roma";
-        Date dataDiNascita = new Date(); // Utilizza la data corrente come esempio
-        
-        Cliente cliente = new Cliente (nome, cognome, nazioneDiNascita, cittaDiNascita, dataDiNascita);
+        Date dataDiNascita = new Date();
+        Cliente cliente = new Cliente(codiceDelCliente, nome, cognome, nazioneDiNascita, cittaDiNascita, dataDiNascita);
         
         // Stampa i dati del cliente
         System.out.println("Cognome: " + cliente.getCognome());

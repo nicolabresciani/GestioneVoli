@@ -12,7 +12,7 @@ public class Voli {
     public void rimuoviVolo(Volo volo) {
         voli.remove(volo);
     }
-    public void rimuoviVolo(String codiceVolo) {
+    public void rimuoviVoloCodice(String codiceVolo) {
         Iterator<Volo> iterator = voli.iterator();
         while (iterator.hasNext()) {
             Volo volo = iterator.next();
@@ -27,6 +27,7 @@ public class Voli {
             System.out.println(volo);
         }
     }
+    
     // modifica volo
     public void modificaVolo(String codiceVolo, String aeroportoPartenza, String aeroportoArrivo, LocalDate dataVolo, String oraPartenza, String oraArrivo, int numeroPosti) {
         for (Volo volo : voli) {
