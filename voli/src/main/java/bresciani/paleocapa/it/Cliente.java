@@ -73,8 +73,8 @@ public class Cliente {
     public static void main(String[] args) {
         
         String codiceDelCliente = "123";
-        String nome = "Mario";
-        String cognome = "Rossi";
+        String nome = "nicola";
+        String cognome = "bresciani";
         String nazioneDiNascita = "Italia";
         String cittaDiNascita = "Roma";
         Date dataDiNascita = new Date();

@@ -1,5 +1,6 @@
 package bresciani.paleocapa.it;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Voli {
@@ -28,7 +29,6 @@ public class Voli {
         }
     }
     
-    // modifica volo
     public void modificaVolo(String codiceVolo, String aeroportoPartenza, String aeroportoArrivo, LocalDate dataVolo, String oraPartenza, String oraArrivo, int numeroPosti) {
         for (Volo volo : voli) {
             if (volo.getCodiceVolo().equals(codiceVolo)) {
@@ -42,7 +42,8 @@ public class Voli {
             }
         }
     }
-    public Volo ricercaVolo(String codiceVolo) {
+
+    public Volo ricercaVoloCodice(String codiceVolo) {
         for (Volo volo : voli) {
             if (volo.getCodiceVolo().equals(codiceVolo)) {
                 return volo;
@@ -51,6 +52,14 @@ public class Voli {
         return null;
     }
 
+    public Volo ricercaVoloCompleto(LocalDate data, String aereoportoPartenza, String aereoportoArrivo, LocalTime orario){
+        for (Volo volo : voli) {
+            if (volo.getDataVolo().equals(data) && volo.getAeroportoPartenza().equals(aereoportoPartenza) && volo.getAeroportoArrivo().equals(aereoportoArrivo) && volo.getOraPartenza().equals(orario)) {
+                return volo;
+            }
+        }
+        return null;
+    }
     
 
     public static void main(String[] args) {
@@ -71,19 +80,12 @@ public class Voli {
         voli.stampaVoli();
 
         // Ricerca di un volo per codice
-        String codiceVoloDaCercare = "LH456";
-        Volo voloTrovato = voli.ricercaVolo(codiceVoloDaCercare);
-        if (voloTrovato != null) {
-            System.out.println("Volo trovato: " + voloTrovato);
-        } else {
-            System.out.println("Nessun volo trovato con il codice: " + codiceVoloDaCercare);
-        }
+        String codiceVoloDaRicercare = "AZ123";
+        System.out.println("Volo ricercato: " + voli.ricercaVoloCodice(codiceVoloDaRicercare));
 
         // Modifica di un volo
-        String codiceVoloDaModificare = "AZ123";
-        voli.modificaVolo(codiceVoloDaModificare, "Roma", "Napoli", LocalDate.of(2023, 6, 12), "08:00", "09:30", 90);
-        System.out.println("Volo modificato: " + voli.ricercaVolo(codiceVoloDaModificare));
-
+        voli.modificaVolo("AZ123", "Milano", "Roma", LocalDate.of(2023, 6, 12), "08:00", "09:00", 100);
+        
         // Rimozione di un volo
         voli.rimuoviVolo(volo3);
 
